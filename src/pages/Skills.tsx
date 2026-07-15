@@ -1,49 +1,7 @@
 import SectionWrapper from "../components/SectionWrapper";
 import SectionHeader from "../components/SectionHeader";
 import SkillBadge from "../components/SkillBadge";
-
-const skillCategories = [
-  {
-    title: "Programming Languages",
-    icon: "💻",
-    skills: [
-      { name: "C#", level: 90, icon: "🔷" },
-      { name: "JavaScript", level: 85, icon: "🟨" },
-      { name: "TypeScript", level: 80, icon: "🔵" },
-      { name: "Python", level: 75, icon: "🐍" }
-    ]
-  },
-  {
-    title: "Frameworks & Libraries",
-    icon: "⚡",
-    skills: [
-      { name: "ASP.NET Core", level: 90, icon: "⚡" },
-      { name: "Angular", level: 85, icon: "🅰️" },
-      { name: "React", level: 80, icon: "⚛️" },
-      { name: "Laravel", level: 75, icon: "🔴" }
-    ]
-  },
-  {
-    title: "Tools & Technologies",
-    icon: "🛠️",
-    skills: [
-      { name: "Git", level: 85, icon: "📝" },
-      { name: "Postman", level: 80, icon: "📮" },
-      { name: "VS Code", level: 90, icon: "💻" },
-      { name: "MongoDB Atlas", level: 75, icon: "🍃" }
-    ]
-  },
-  {
-    title: "UI & Design",
-    icon: "🎨",
-    skills: [
-      { name: "Bootstrap", level: 85, icon: "🎨" },
-      { name: "Tailwind CSS", level: 80, icon: "💨" },
-      { name: "Responsive Design", level: 85, icon: "📱" },
-      { name: "UI/UX Principles", level: 75, icon: "✨" }
-    ]
-  }
-];
+import { skillCategories, additionalCompetencies, skillStats } from "../data/portfolioData";
 
 interface SkillsProps {
   isDarkMode: boolean;
@@ -119,16 +77,7 @@ export default function Skills({ isDarkMode }: SkillsProps) {
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { skill: "Agile/Scrum", icon: "🔄" },
-            { skill: "RESTful APIs", icon: "🔗" },
-            { skill: "Database Design", icon: "🗄️" },
-            { skill: "Cloud Computing", icon: "☁️" },
-            { skill: "DevOps", icon: "🚀" },
-            { skill: "Testing", icon: "🧪" },
-            { skill: "Security", icon: "🔒" },
-            { skill: "Performance", icon: "⚡" }
-          ].map((item, index) => (
+          {additionalCompetencies.map((item, index) => (
             <SkillBadge
               key={index}
               skill={item.skill}
@@ -139,14 +88,9 @@ export default function Skills({ isDarkMode }: SkillsProps) {
         </div>
       </div>
 
-      {/* Skills Summary */}
       <div className="mt-16 text-center">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { number: "4+", label: "Years of Experience", icon: "⏱️" },
-            { number: "8+", label: "Technologies Mastered", icon: "🎯" },
-            { number: "15+", label: "Projects Built", icon: "🏗️" }
-          ].map((stat, index) => (
+          {skillStats.map((stat, index) => (
             <div key={index} className={`p-6 rounded-2xl transition-all duration-300 hover:scale-105 ${
               isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200 shadow-sm'
             }`}>

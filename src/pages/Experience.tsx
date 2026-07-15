@@ -1,50 +1,6 @@
-const experiences = [
-  {
-    id: 1,
-    company: "Maven Technosoft",
-    role: "Full-Stack Developer",
-    period: "2025 - Present",
-    location: "Remote",
-    description: "Currently working on enterprise web applications using .NET Core and Angular.",
-    achievements: [
-      "Developed scalable web applications serving 10,000+ users",
-      "Implemented microservices architecture reducing system downtime by 40%",
-      "Led code reviews and mentored junior developers",
-      "Optimized database queries improving application performance by 60%"
-    ],
-    current: true
-  },
-  {
-    id: 2,
-    company: "ISRO (Indian Space Research Organisation)",
-    role: "Software Development Intern",
-    period: "Summer 2023",
-    location: "Bangalore, India",
-    description: "Worked on satellite data processing systems and mission-critical applications.",
-    achievements: [
-      "Developed data visualization tools for satellite telemetry",
-      "Contributed to mission planning software using C# and .NET",
-      "Collaborated with senior engineers on space mission projects",
-      "Implemented automated testing procedures for critical systems"
-    ],
-    current: false
-  },
-  {
-    id: 3,
-    company: "Stratbeans",
-    role: "Web Development Intern",
-    period: "Winter 2022",
-    location: "Mumbai, India",
-    description: "Focused on frontend development and user experience optimization.",
-    achievements: [
-      "Built responsive web interfaces using React and TypeScript",
-      "Improved website loading speed by 45% through optimization",
-      "Collaborated with design team to implement pixel-perfect UIs",
-      "Participated in agile development processes and daily standups"
-    ],
-    current: false
-  }
-];
+import SectionWrapper from "../components/SectionWrapper";
+import SectionHeader from "../components/SectionHeader";
+import { experiences } from "../data/portfolioData";
 
 interface ExperienceProps {
   isDarkMode: boolean;
@@ -52,25 +8,14 @@ interface ExperienceProps {
 
 export default function Experience({ isDarkMode }: ExperienceProps) {
   return (
-    <div className={`py-20 ${
-      isDarkMode ? 'bg-gray-800' : 'bg-white'
-    }`}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className={`text-4xl font-bold mb-4 ${
-            isDarkMode ? 'text-white' : 'text-gray-900'
-          }`}>Professional Experience</h2>
-          <div className={`w-20 h-1 mx-auto mb-8 ${
-            isDarkMode ? 'bg-blue-400' : 'bg-blue-600'
-          }`}></div>
-          <p className={`text-lg max-w-2xl mx-auto ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-600'
-          }`}>
-            My journey through various roles has shaped my expertise in full-stack development and problem-solving.
-          </p>
-        </div>
+    <SectionWrapper isDarkMode={isDarkMode} className={isDarkMode ? 'bg-gray-800' : 'bg-white'}>
+      <SectionHeader 
+        title="Professional Experience"
+        subtitle="My journey through various roles has shaped my expertise in full-stack development and problem-solving."
+        isDarkMode={isDarkMode}
+      />
 
-        <div className="space-y-8">
+      <div className="space-y-8">
           {experiences.map((exp) => (
             <div
               key={exp.id}
@@ -124,8 +69,7 @@ export default function Experience({ isDarkMode }: ExperienceProps) {
               </div>
             </div>
           ))}
-        </div>
       </div>
-    </div>
+    </SectionWrapper>
   );
 }

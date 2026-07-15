@@ -1,43 +1,6 @@
 import SectionWrapper from "../components/SectionWrapper";
 import SectionHeader from "../components/SectionHeader";
-
-const publications = [
-  {
-    id: 1,
-    type: "Patent",
-    title: "Intelligent Doctor Appointment Scheduling System",
-    description: "A patent-pending system for optimizing doctor appointment scheduling using machine learning algorithms and real-time availability tracking. The system reduces wait times by 40% and improves patient satisfaction through intelligent scheduling optimization.",
-    status: "Patent Pending",
-    date: "2024",
-    pdfLink: "/patent-document.pdf",
-    icon: "📋",
-    featured: true
-  },
-  {
-    id: 2,
-    type: "IEEE Paper",
-    title: "Scalable Web Applications Using Microservices Architecture",
-    description: "Research paper on implementing microservices architecture for large-scale web applications with improved performance and maintainability. The study demonstrates 60% improvement in system scalability and 35% reduction in deployment time.",
-    journal: "IEEE Computer Society",
-    date: "2023",
-    doi: "10.1109/EXAMPLE.2023.123456",
-    link: "https://ieeexplore.ieee.org/document/example",
-    icon: "📄",
-    featured: false
-  },
-  {
-    id: 3,
-    type: "Research Paper",
-    title: "AI-Powered Graph Visualization and Analysis",
-    description: "Comprehensive study on implementing artificial intelligence in graph visualization tools for enhanced data analysis and pattern recognition. The research introduces novel algorithms for automatic graph layout optimization and intelligent data clustering.",
-    journal: "International Journal of Computer Science",
-    date: "2023",
-    doi: "10.1234/IJCS.2023.567890",
-    link: "https://ijcs.example.com/article/567890",
-    icon: "🔬",
-    featured: false
-  }
-];
+import { publications } from "../data/portfolioData";
 
 interface PatentsProps {
   isDarkMode: boolean;

@@ -1,48 +1,12 @@
 import SectionWrapper from "../components/SectionWrapper";
 import SectionHeader from "../components/SectionHeader";
+import { highlights, timeline } from "../data/portfolioData";
 
 interface AboutProps {
   isDarkMode: boolean;
 }
 
 export default function About({ isDarkMode }: AboutProps) {
-  const highlights = [
-    { number: "15+", label: "Projects Completed", icon: "🚀" },
-    { number: "3", label: "Internships", icon: "💼" },
-    { number: "1", label: "Patent Pending", icon: "📋" },
-    { number: "4.2", label: "Years Experience", icon: "⭐" }
-  ];
-
-  const timeline = [
-    {
-      year: "2025",
-      title: "Full-Stack Developer",
-      company: "Maven Technosoft",
-      description: "Leading enterprise application development",
-      current: true
-    },
-    {
-      year: "2023",
-      title: "Software Development Intern",
-      company: "ISRO",
-      description: "Satellite data processing systems",
-      current: false
-    },
-    {
-      year: "2022",
-      title: "Web Development Intern",
-      company: "Stratbeans",
-      description: "Frontend development and UX optimization",
-      current: false
-    },
-    {
-      year: "2021",
-      title: "Computer Science Student",
-      company: "SRM University",
-      description: "Pursuing Bachelor's in Computer Science",
-      current: false
-    }
-  ];
 
   return (
     <SectionWrapper isDarkMode={isDarkMode} className={isDarkMode ? 'bg-gray-800' : 'bg-white'}>
