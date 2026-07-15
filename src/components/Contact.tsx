@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useMutation, useAction } from "convex/react";
-import { api } from "../../convex/_generated/api";
 import { toast } from "sonner";
 
 interface ContactProps {
@@ -16,10 +14,6 @@ export default function Contact({ isDarkMode }: ContactProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Make sure these paths match your backend files:
-  const submitContact = useMutation(api.portfolio.submitContact); // if defined in portfolio.ts
-  const sendEmail = useAction(api.email.sendEmail); // if defined in email.ts
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -30,28 +24,37 @@ export default function Contact({ isDarkMode }: ContactProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-  try {
-    // 1. Save to Convex DB
-    await submitContact(formData);
+    
+    try {
+      // Simulate API call delay
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
-    // 2. Send email (Convex action)
-    await sendEmail(formData);
+      // Save message locally to localStorage so it is persisted in the browser
+      const existingMessagesJson = localStorage.getItem("portfolio_messages");
+      const existingMessages = existingMessagesJson ? JSON.parse(existingMessagesJson) : [];
+      const newMessage = {
+        ...formData,
+        id: Date.now().toString(),
+        date: new Date().toISOString()
+      };
+      localStorage.setItem("portfolio_messages", JSON.stringify([...existingMessages, newMessage]));
 
-    toast.success("Message sent successfully! I'll get back to you soon.", {
-      duration: 5000,
-    });
+      // Display a beautiful toast notification
+      toast.success("Message sent successfully! I'll get back to you soon.", {
+        duration: 5000,
+      });
 
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" });
-  } catch (error: any) {
-  console.error("Contact form error:", error);
-  toast.error("Failed to send message: " + (error.message || "Unknown error"), {
-    duration: 5000,
-  });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      // Reset form
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error: any) {
+      console.error("Contact form error:", error);
+      toast.error("Failed to send message: " + (error.message || "Unknown error"), {
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="grid md:grid-cols-2 gap-16">

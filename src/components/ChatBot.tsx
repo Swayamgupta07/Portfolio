@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useMutation, useAction } from "convex/react";
-import { api } from "../../convex/_generated/api";
 
 interface ChatBotProps {
   isDarkMode: boolean;
@@ -18,7 +16,7 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hi! I'm Swayam's AI assistant. Ask me anything about his experience, skills, projects, or background!",
+      text: "Hi! I'm Swayam's assistant. Ask me anything about his experience, skills, projects, patents, or background!",
       isUser: false,
       timestamp: new Date()
     }
@@ -26,10 +24,7 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const saveChatMessage = useMutation(api.portfolio.saveChatMessage);
-  const generateChatResponse = useAction(api.ai.generateChatResponse);
-
-  const handleSendMessage = async () => {
+  const handleSendMessage = () => {
     if (!inputMessage.trim()) return;
 
     const userMessage: Message = {
@@ -44,73 +39,52 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
     setInputMessage("");
     setIsLoading(true);
 
-    try {
-      // Generate AI response using OpenAI
-      const response = await generateChatResponse({ message: currentMessage });
-      
+    // Simulate typing delay for a natural feel
+    setTimeout(() => {
+      const botResponse = generateLocalResponse(currentMessage);
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: response,
-        isUser: false,
-        timestamp: new Date()
-      };
-
-      setMessages(prev => [...prev, aiMessage]);
-      
-      // Save to database
-      await saveChatMessage({
-        message: currentMessage,
-        response: response
-      });
-    } catch (error) {
-      console.error("Error sending message:", error);
-      
-      // Fallback response
-      const fallbackResponse = generateFallbackResponse(currentMessage);
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: fallbackResponse,
+        text: botResponse,
         isUser: false,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, aiMessage]);
-    } finally {
       setIsLoading(false);
-    }
+    }, 600);
   };
 
-  const generateFallbackResponse = (question: string): string => {
+  const generateLocalResponse = (question: string): string => {
     const lowerQuestion = question.toLowerCase();
     
-    if (lowerQuestion.includes("experience") || lowerQuestion.includes("work") || lowerQuestion.includes("job")) {
-      return "Swayam has extensive experience including his current role as a Full-Stack Developer at Maven Technosoft, an internship at ISRO working on satellite data processing systems, and another internship at Stratbeans focusing on frontend development. He's worked on enterprise applications serving 10,000+ users and contributed to mission-critical space applications.";
+    if (lowerQuestion.includes("experience") || lowerQuestion.includes("work") || lowerQuestion.includes("job") || lowerQuestion.includes("intern") || lowerQuestion.includes("company")) {
+      return "Swayam has impressive experience! He's currently a Full-Stack Developer at Maven Technosoft working on enterprise applications serving 10,000+ users. He also did a Software Development Internship at ISRO (working on satellite data processing systems) and a Web Development Internship at Stratbeans (focusing on frontend development and UX optimization).";
     }
     
-    if (lowerQuestion.includes("skills") || lowerQuestion.includes("technology") || lowerQuestion.includes("tech")) {
-      return "Swayam specializes in .NET Core (90%), Angular (85%), React (80%), and TypeScript (80%). He's also proficient in C#, JavaScript, Python, Laravel, and various tools like Git, Postman, and MongoDB Atlas. His expertise spans full-stack development, microservices architecture, and responsive design.";
+    if (lowerQuestion.includes("skills") || lowerQuestion.includes("technology") || lowerQuestion.includes("tech") || lowerQuestion.includes("languages")) {
+      return "Swayam specializes in .NET Core (ASP.NET Core), Angular, React/MERN stack, and Laravel (PHP). His core programming skills include C#, JavaScript, TypeScript, and Python. He is also proficient in tools like Git, Postman, MongoDB Atlas, and CSS frameworks like Tailwind CSS & Bootstrap.";
     }
     
-    if (lowerQuestion.includes("project") || lowerQuestion.includes("portfolio")) {
-      return "Swayam has built several impressive projects including a patent-pending Doctor Appointment Website using MERN stack, a Graph Builder and Visualizer with AI-powered search, an E-commerce Platform with Laravel, and various other applications. His featured project is the Doctor Appointment system which showcases his full-stack capabilities.";
+    if (lowerQuestion.includes("project") || lowerQuestion.includes("portfolio") || lowerQuestion.includes("built")) {
+      return "Swayam has built several featured projects: \n1. A Doctor Appointment Website using the MERN stack with a patent-pending appointment scheduling system.\n2. A Graph Builder and Visualizer with AI-powered search (built with Brython & Python).\n3. An E-commerce Platform built with Laravel & MySQL.\n4. A collaborative Task Management System.";
     }
     
-    if (lowerQuestion.includes("education") || lowerQuestion.includes("university") || lowerQuestion.includes("study")) {
-      return "Swayam is a final-year Computer Science student at SRM University. His academic journey has been complemented by practical experience through internships and real-world projects, giving him a strong foundation in both theoretical concepts and practical application.";
+    if (lowerQuestion.includes("education") || lowerQuestion.includes("university") || lowerQuestion.includes("study") || lowerQuestion.includes("college")) {
+      return "Swayam is in his final year of pursuing a Bachelor's degree in Computer Science at SRM University. His studies are complemented by strong practical experience from high-profile internships and hackathons.";
     }
     
-    if (lowerQuestion.includes("patent") || lowerQuestion.includes("research")) {
-      return "Swayam has a patent-pending 'Intelligent Doctor Appointment Scheduling System' that uses machine learning algorithms for optimizing appointment scheduling. He's also published research papers on scalable web applications using microservices architecture and AI-powered graph visualization.";
+    if (lowerQuestion.includes("patent") || lowerQuestion.includes("research") || lowerQuestion.includes("ieee") || lowerQuestion.includes("paper")) {
+      return "Swayam has a patent-pending 'Intelligent Doctor Appointment Scheduling System' that uses machine learning algorithms for optimized scheduling. He is also an IEEE published author, with contributions to scalable web applications and AI-powered graph visualization.";
     }
     
-    if (lowerQuestion.includes("contact") || lowerQuestion.includes("reach") || lowerQuestion.includes("email")) {
-      return "You can reach Swayam at swayam@example.com, connect with him on LinkedIn at linkedin.com/in/swayamgupta, or check out his GitHub at github.com/swayamgupta. He's based in Chennai, India and typically responds within 24 hours.";
+    if (lowerQuestion.includes("contact") || lowerQuestion.includes("reach") || lowerQuestion.includes("email") || lowerQuestion.includes("linkedin") || lowerQuestion.includes("github")) {
+      return "You can reach Swayam in the following ways:\n- Email: swayamgupta09@gmail.com\n- LinkedIn: linkedin.com/in/swayam-gupta07\n- GitHub: github.com/Swayamgupta07\n- Or you can leave a message on the Contact Page!";
     }
     
-    if (lowerQuestion.includes("hello") || lowerQuestion.includes("hi") || lowerQuestion.includes("hey")) {
-      return "Hello! I'm here to help you learn more about Swayam Gupta. He's a passionate full-stack developer with experience at ISRO, expertise in .NET Core and Angular, and a patent-pending appointment system. What would you like to know about him?";
+    if (lowerQuestion.includes("hello") || lowerQuestion.includes("hi") || lowerQuestion.includes("hey") || lowerQuestion.includes("greetings")) {
+      return "Hello! I'm Swayam's helper bot. Ask me anything about his experience, skills, projects, patents, or how to contact him. What would you like to know?";
     }
     
-    return "That's a great question! Swayam is a full-stack developer specializing in .NET Core and Angular, with experience at ISRO and several innovative projects. You can ask me about his experience, skills, projects, education, research, or how to contact him. What specific aspect interests you most?";
+    return "That's a great question! Swayam is a skilled developer specializing in .NET Core and Angular with real-world experience at ISRO and Maven Technosoft. Feel free to ask about his 'experience', 'skills', 'projects', 'patent', 'education', or 'contact' details.";
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {

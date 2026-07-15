@@ -4,28 +4,22 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm-run-all --parallel dev:frontend dev:backend",
-    "dev:frontend": "vite --open",
-    "dev:backend": "convex dev",
+    "dev": "vite --open",
     "build": "vite build",
-    "lint": "tsc -p convex -noEmit --pretty false && tsc -p . -noEmit --pretty false && convex dev --once && vite build"
+    "lint": "tsc -p . -noEmit --pretty false && vite build"
   },
   "dependencies": {
-    "@convex-dev/auth": "^0.0.80",
     "clsx": "^2.1.1",
-    "convex": "^1.24.2",
-    "nodemailer": "^6.10.1",
-    "openai": "^5.11.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.7.1",
+    "react-simple-typewriter": "^5.0.1",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@types/node": "^22.13.10",
-    "@types/nodemailer": "^7.0.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",

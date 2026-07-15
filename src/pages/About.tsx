@@ -56,7 +56,7 @@ export default function About({ isDarkMode }: AboutProps) {
         <div className="relative">
           <div className="relative overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="public\Photo.jpg"
+              src="/Photo.jpg"
               alt="Swayam Gupta"
               className="w-full h-auto transition-transform duration-300 hover:scale-105"
             />

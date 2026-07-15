@@ -62,13 +62,6 @@ export default function App() {
         <Toaster theme={isDarkMode ? 'dark' : 'light'} />
         
         {/* Dark Mode Card Effect */}
-        {isDarkMode && (
-          <div className="fixed top-4 left-4 z-40">
-            <div className="card">
-              <div className="card2"></div>
-            </div>
-          </div>
-        )}
       </div>
     </Router>
   );
