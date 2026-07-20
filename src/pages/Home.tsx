@@ -140,10 +140,9 @@ export default function Home({ isDarkMode }: HomeProps) {
             </span>
           </div>
 
-          {/* Fun animated name with shimmer gradient */}
           <h1
             ref={titleRef}
-            className={`relative text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r bg-clip-text text-transparent transition-all duration-300 hover:scale-105 animate-shimmer select-none ${
+            className={`relative text-5xl md:text-7xl font-extrabold pb-3 mb-4 bg-gradient-to-r bg-clip-text text-transparent transition-all duration-300 hover:scale-105 animate-shimmer select-none ${
               isDarkMode
                 ? "from-white via-blue-200 to-purple-300"
                 : "from-gray-900 via-blue-800 to-purple-800"
@@ -156,8 +155,6 @@ export default function Home({ isDarkMode }: HomeProps) {
           >
             Swayam Gupta
           </h1>
-
-          {/* Dynamic typewriter effect for skills/roles */}
           <h2
             className={`typewriter-h2 text-xl md:text-2xl mb-6 font-medium ${
               isDarkMode ? "text-gray-300" : "text-gray-600"
