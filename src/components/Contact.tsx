@@ -19,6 +19,13 @@ export default function Contact({ isDarkMode }: ContactProps) {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("swayamgupta09@gmail.com");
+    toast.success("Email address copied to clipboard!", { duration: 3000 });
+    setTimeout(() => {
+      window.location.href = "mailto:swayamgupta09@gmail.com";
+    }, 150);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,7 +33,7 @@ export default function Contact({ isDarkMode }: ContactProps) {
     setIsSubmitting(true);
     
     try {
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, 600));
 
       const existingMessagesJson = localStorage.getItem("portfolio_messages");
       const existingMessages = existingMessagesJson ? JSON.parse(existingMessagesJson) : [];
@@ -37,17 +44,24 @@ export default function Contact({ isDarkMode }: ContactProps) {
       };
       localStorage.setItem("portfolio_messages", JSON.stringify([...existingMessages, newMessage]));
 
-      toast.success("Message sent successfully! I'll get back to you soon.", {
-        duration: 5000,
-      });
+      navigator.clipboard.writeText("swayamgupta09@gmail.com");
+      toast.success("Message compiled! Opening email client...", { duration: 4000 });
+
+      const mailtoUrl = `mailto:swayamgupta09@gmail.com?subject=${encodeURIComponent(
+        formData.subject || "Contact from Portfolio"
+      )}&body=${encodeURIComponent(
+        `Hi Swayam,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+      )}`;
+
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 300);
 
       // Reset form
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error: any) {
       console.error("Contact form error:", error);
-      toast.error("Failed to send message: " + (error.message || "Unknown error"), {
-        duration: 5000,
-      });
+      toast.error("Failed to compile message: " + (error.message || "Unknown error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -112,9 +126,10 @@ export default function Contact({ isDarkMode }: ContactProps) {
                 }`}>{contact.title}</h4>
                 <a 
                   href={contact.href} 
+                  onClick={contact.href.startsWith('mailto:') ? handleEmailClick : undefined}
                   target={contact.href.startsWith('mailto:') ? undefined : "_blank"}
                   rel={contact.href.startsWith('mailto:') ? undefined : "noopener noreferrer"}
-                  className={`transition-colors hover:underline ${
+                  className={`transition-colors hover:underline cursor-pointer ${
                     isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
                   }`}
                 >

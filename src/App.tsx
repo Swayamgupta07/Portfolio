@@ -11,8 +11,6 @@ import Experience from "./pages/Experience";
 import Skills from "./pages/Skills";
 import ContactPage from "./pages/Contact";
 import ChatBot from "./components/ChatBot";
-
-// Animation components
 import CustomCursor from "./components/CustomCursor";
 import LoadingScreen from "./components/LoadingScreen";
 import ScrollProgress from "./components/ScrollProgress";
@@ -32,12 +30,10 @@ export default function App() {
     if (savedDarkMode) {
       setIsDarkMode(JSON.parse(savedDarkMode));
     } else {
-      // Default to dark mode for rich premium aesthetic
       setIsDarkMode(true);
     }
   }, []);
 
-  // Save dark mode preference to localStorage
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
     if (isDarkMode) {
@@ -47,7 +43,6 @@ export default function App() {
     }
   }, [isDarkMode]);
 
-  // Initialize Lenis smooth scroll
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -56,7 +51,6 @@ export default function App() {
       wheelMultiplier: 1.0,
     });
 
-    // Update ScrollTrigger on Lenis scroll
     lenis.on("scroll", () => {
       ScrollTrigger.update();
     });
@@ -87,7 +81,6 @@ export default function App() {
           isDarkMode ? "bg-slate-950 text-white" : "bg-gray-50 text-slate-900"
         }`}
       >
-        {/* Core Global Animation Layout Overlays */}
         <ScrollProgress />
         <CustomCursor isDarkMode={isDarkMode} />
         <ParticlesBackground isDarkMode={isDarkMode} />
