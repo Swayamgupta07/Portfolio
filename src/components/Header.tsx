@@ -37,7 +37,6 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
             }`}>SG</Link>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) => (
               <Link
@@ -57,7 +56,6 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
               </Link>
             ))}
             
-            {/* Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
               className={`p-2 rounded-lg transition-all duration-300 hover:scale-110 ${
@@ -79,9 +77,7 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
             </button>
           </nav>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-4">
-            {/* Mobile Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
               className={`p-2 rounded-lg transition-all duration-300 ${
@@ -121,7 +117,6 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
             <div className={`px-2 pt-2 pb-3 space-y-1 border-t ${

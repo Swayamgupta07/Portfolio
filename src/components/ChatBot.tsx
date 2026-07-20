@@ -95,7 +95,6 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
 
   return (
     <>
-      {/* Chat Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg transition-all duration-300 z-50 ${
@@ -115,12 +114,10 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
         )}
       </button>
 
-      {/* Chat Window */}
       {isOpen && (
         <div className={`fixed bottom-24 right-6 w-80 h-96 rounded-lg shadow-2xl z-50 flex flex-col ${
           isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
         }`}>
-          {/* Header */}
           <div className={`p-4 border-b rounded-t-lg ${
             isDarkMode 
               ? 'bg-gray-700 border-gray-600' 
@@ -129,8 +126,6 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
             <h3 className="text-white font-semibold">Chat with Swayam's AI</h3>
             <p className="text-blue-100 text-sm">Ask me anything about Swayam!</p>
           </div>
-
-          {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.map((message) => (
               <div
@@ -166,8 +161,6 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
               </div>
             )}
           </div>
-
-          {/* Input */}
           <div className={`p-4 border-t ${
             isDarkMode ? 'border-gray-600' : 'border-gray-200'
           }`}>

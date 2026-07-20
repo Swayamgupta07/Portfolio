@@ -26,10 +26,8 @@ export default function Contact({ isDarkMode }: ContactProps) {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call delay
       await new Promise((resolve) => setTimeout(resolve, 800));
 
-      // Save message locally to localStorage so it is persisted in the browser
       const existingMessagesJson = localStorage.getItem("portfolio_messages");
       const existingMessages = existingMessagesJson ? JSON.parse(existingMessagesJson) : [];
       const newMessage = {
@@ -39,7 +37,6 @@ export default function Contact({ isDarkMode }: ContactProps) {
       };
       localStorage.setItem("portfolio_messages", JSON.stringify([...existingMessages, newMessage]));
 
-      // Display a beautiful toast notification
       toast.success("Message sent successfully! I'll get back to you soon.", {
         duration: 5000,
       });
@@ -58,7 +55,6 @@ export default function Contact({ isDarkMode }: ContactProps) {
 
   return (
     <div className="grid md:grid-cols-2 gap-16">
-      {/* Contact Information */}
       <div className="space-y-8">
         <div>
           <h3 className={`text-2xl font-bold mb-6 ${
@@ -129,7 +125,6 @@ export default function Contact({ isDarkMode }: ContactProps) {
           ))}
         </div>
 
-        {/* Quick Stats */}
 <aside className={`mt-12 p-6 rounded-2xl ${
   isDarkMode ? 'bg-gray-700/50 border border-gray-600' : 'bg-blue-50 border border-blue-100'
 }`}>
@@ -148,7 +143,6 @@ export default function Contact({ isDarkMode }: ContactProps) {
   </ul>
 </aside>
       </div>
-      {/* Contact Form */}
       <div className={`rounded-2xl shadow-lg p-8 ${
         isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
       }`}>

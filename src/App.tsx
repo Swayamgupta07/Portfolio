@@ -13,7 +13,6 @@ import ChatBot from "./components/ChatBot";
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Load dark mode preference from localStorage
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode) {
@@ -21,7 +20,6 @@ export default function App() {
     }
   }, []);
 
-  // Save dark mode preference to localStorage
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
     if (isDarkMode) {
@@ -58,8 +56,6 @@ export default function App() {
 
         <ChatBot isDarkMode={isDarkMode} />
         <Toaster theme={isDarkMode ? 'dark' : 'light'} />
-        
-        {/* Dark Mode Card Effect */}
       </div>
     </Router>
   );
