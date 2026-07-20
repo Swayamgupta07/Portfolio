@@ -70,11 +70,15 @@ body.custom-cursor-active * {
   border: 2px solid rgba(99, 102, 241, 0.5);
   border-radius: 50%;
   position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: -20px;
+  margin-left: -20px;
   pointer-events: none;
   z-index: 99999;
-  transition: transform 0.15s ease, border-color 0.3s ease, background-color 0.3s ease;
-  transform: translate(-50%, -50%);
   mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cursor-inner {
@@ -83,13 +87,23 @@ body.custom-cursor-active * {
   background: #6366f1;
   border-radius: 50%;
   position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: -4px;
+  margin-left: -4px;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cursor-outer.active,
+.cursor-inner.active {
+  opacity: 1;
 }
 
 .cursor-outer.hovering {
-  transform: translate(-50%, -50%) scale(1.8);
+  transform: scale(1.8);
   background: rgba(99, 102, 241, 0.1);
   border-color: rgba(139, 92, 246, 0.8);
 }
@@ -100,9 +114,18 @@ body.custom-cursor-active * {
   background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
   border-radius: 50%;
   position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: -100px;
+  margin-left: -100px;
   pointer-events: none;
   z-index: 99990;
-  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cursor-glow.active {
+  opacity: 1;
 }
 
 .scroll-progress {
