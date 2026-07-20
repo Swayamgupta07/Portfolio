@@ -2,7 +2,7 @@
 
 Welcome to my premium, interactive full-stack developer portfolio! This is a high-end **Single-Page Scroll** web application engineered with a state-of-the-art interactive animation system, tailored to showcase my skills, projects, and work experience at **Wipro** and **Maven Technosoft**.
 
-🔗 **Live Preview**: [swayamgupta.dev](https://github.com/Swayamgupta07)  
+🔗 **Live Preview**: [Portfolio](https://swayam-gupta-portfolio.vercel.app/)  
 📬 **Let's Connect**: swayamgupta09@gmail.com | [LinkedIn](https://linkedin.com/in/swayam-gupta07)
 
 ---
