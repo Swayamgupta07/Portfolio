@@ -51,55 +51,40 @@ export interface Competency {
   icon: string;
 }
 
-export interface PublicationItem {
-  id: number;
-  type: string;
-  title: string;
-  description: string;
-  status?: string;
-  journal?: string;
-  date: string;
-  pdfLink?: string;
-  doi?: string;
-  link?: string;
-  icon: string;
-  featured: boolean;
-}
+export const typewriterWords = [
+  "MEAN Stack Developer",
+  "Wipro Engineer",
+  ".NET Core & MAUI Builder",
+  "Angular & React Specialist",
+  "Full-Stack Developer",
+];
 
 export const highlights: Highlight[] = [
   { number: "15+", label: "Projects Completed", icon: "🚀" },
-  { number: "3", label: "Internships", icon: "💼" },
-  { number: "1", label: "Patent Pending", icon: "📋" },
-  { number: "4.2", label: "Years Experience", icon: "⭐" }
+  { number: "1", label: "Patent Pending (Hold)", icon: "📋" },
+  { number: "1+", label: "Year Experience", icon: "⭐" }
 ];
 
 export const timeline: TimelineItem[] = [
   {
-    year: "2025",
-    title: "Full-Stack Developer",
-    company: "Maven Technosoft",
-    description: "Leading enterprise application development",
+    year: "2026",
+    title: "MEAN Stack Developer",
+    company: "Wipro",
+    description: "Joined as a fresher, building modern web applications using MongoDB, Express, Angular, and Node.js.",
     current: true
   },
   {
-    year: "2023",
-    title: "Software Development Intern",
-    company: "ISRO",
-    description: "Satellite data processing systems",
+    year: "2025",
+    title: "Full-Stack Developer",
+    company: "Maven Technosoft",
+    description: "Full-stack development with .NET Core, Angular, and cross-platform mobile apps with .NET MAUI (8 months full-time, 3 months training).",
     current: false
   },
   {
-    year: "2022",
-    title: "Web Development Intern",
-    company: "Stratbeans",
-    description: "Frontend development and UX optimization",
-    current: false
-  },
-  {
-    year: "2021",
+    year: "2021 - 2025",
     title: "Computer Science Student",
     company: "SRM University",
-    description: "Pursuing Bachelor's in Computer Science",
+    description: "Graduated with a Bachelor's in Computer Science, laying a strong foundation in software engineering.",
     current: false
   }
 ];
@@ -107,46 +92,29 @@ export const timeline: TimelineItem[] = [
 export const experiences: ExperienceItem[] = [
   {
     id: 1,
-    company: "Maven Technosoft",
-    role: "Full-Stack Developer",
-    period: "2025 - Present",
-    location: "Remote",
-    description: "Currently working on enterprise web applications using .NET Core and Angular.",
+    company: "Wipro",
+    role: "MEAN Stack Developer",
+    period: "2026 - Present",
+    location: "Noida, India",
+    description: "Working as a MEAN stack fresher developer, designing robust APIs and modern responsive web interfaces.",
     achievements: [
-      "Developed scalable web applications serving 10,000+ users",
-      "Implemented microservices architecture reducing system downtime by 40%",
-      "Led code reviews and mentored junior developers",
-      "Optimized database queries improving application performance by 60%"
+      "Collaborating on enterprise-level MEAN Stack application development flows",
+      "Designing schemas and performance-oriented queries in MongoDB",
+      "Building modular, scalable components in Angular and connecting them with Node/Express backends"
     ],
     current: true
   },
   {
     id: 2,
-    company: "ISRO (Indian Space Research Organisation)",
-    role: "Software Development Intern",
-    period: "Summer 2023",
-    location: "Bangalore, India",
-    description: "Worked on satellite data processing systems and mission-critical applications.",
+    company: "Maven Technosoft",
+    role: "Full-Stack Developer",
+    period: "2025 (11 Months)",
+    location: "Remote / Noida",
+    description: "Worked as a full-stack developer (8 months full-time, preceded by 3 months of rigorous training) creating enterprise desktop, mobile, and web applications.",
     achievements: [
-      "Developed data visualization tools for satellite telemetry",
-      "Contributed to mission planning software using C# and .NET",
-      "Collaborated with senior engineers on space mission projects",
-      "Implemented automated testing procedures for critical systems"
-    ],
-    current: false
-  },
-  {
-    id: 3,
-    company: "Stratbeans",
-    role: "Web Development Intern",
-    period: "Winter 2022",
-    location: "Mumbai, India",
-    description: "Focused on frontend development and user experience optimization.",
-    achievements: [
-      "Built responsive web interfaces using React and TypeScript",
-      "Improved website loading speed by 45% through optimization",
-      "Collaborated with design team to implement pixel-perfect UIs",
-      "Participated in agile development processes and daily standups"
+      "Developed cross-platform mobile app modules using .NET MAUI",
+      "Built scalable web APIs using .NET Core and dynamic web screens with Angular",
+      "Participated in database schema migrations and query optimizations"
     ],
     current: false
   }
@@ -155,105 +123,102 @@ export const experiences: ExperienceItem[] = [
 export const projects: ProjectItem[] = [
   {
     id: 1,
-    title: "Doctor Appointment Website",
-    description: "Full-stack MERN application with patent-backed appointment scheduling system. Features real-time booking, patient management, and secure authentication with advanced ML algorithms for optimal scheduling.",
-    tech: ["MongoDB", "Express.js", "React", "Node.js", "JWT", "ML"],
+    title: "Yummy Food Restaurant System",
+    description: "A modern restaurant ordering system designed for browsing menus, selecting items, and handling restaurant transactions with interactive cart flows. Based on the TruYum concept.",
+    tech: ["MongoDB", "Express.js", "Angular", "Node.js", "MEAN Stack"],
     featured: true,
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop",
-    github: "https://github.com/swayamgupta/doctor-appointment",
-    demo: "https://doctor-appointment-demo.com"
+    image: "https://plus.unsplash.com/premium_photo-1661883237884-263e8de8869b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdHVyYW50fGVufDB8fDB8fHww",
+    github: "https://github.com/Swayamgupta07/YummyFood-Resturant-System",
+    demo: "https://truyum.vercel.app/"
   },
   {
     id: 2,
-    title: "Graph Builder and Visualizer",
-    description: "Interactive graph visualization tool built with Brython and AI-powered search capabilities. Supports multiple graph algorithms, real-time editing, and data analysis features.",
-    tech: ["Python", "Brython", "JavaScript", "D3.js", "AI Search"],
-    featured: false,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-    github: "https://github.com/swayamgupta/graph-visualizer",
-    demo: "https://graph-visualizer-demo.com"
+    title: "Employee Management System",
+    description: "Full-featured employee portal to manage workspace records, track active employee details, and administer organizational workflows.",
+    tech: ["C#", ".NET Core", "Angular", "MySQL"],
+    featured: true,
+    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=500&h=300&fit=crop",
+    github: "https://github.com/Swayamgupta07/Employee_Management_System",
+    demo: "https://employee-management-system-swayam.vercel.app"
   },
   {
     id: 3,
-    title: "E-commerce Platform",
-    description: "Comprehensive e-commerce solution with Laravel backend and MySQL database. Features include product management, order processing, payment integration, and advanced analytics dashboard.",
-    tech: ["Laravel", "PHP", "MySQL", "Bootstrap", "Stripe API"],
-    featured: false,
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop",
-    github: "https://github.com/swayamgupta/ecommerce-platform",
-    demo: "https://ecommerce-demo.com"
+    title: "eCart",
+    description: "A robust shopping platform built fully on the MEAN Stack. Features product listings, reactive cart state management, checkout processes, and administrative controls.",
+    tech: ["MongoDB", "Express.js", "Angular", "Node.js", "MEAN Stack"],
+    featured: true,
+    image: "https://plus.unsplash.com/premium_vector-1682301669172-2fe738999891?q=80&w=1051&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    github: "https://github.com/Swayamgupta07/eCart_MEAN_Stack",
+    demo: "https://ecart-mean-stack-1.onrender.com"
   },
   {
     id: 4,
-    title: "Task Management System",
-    description: "Collaborative task management application with real-time updates, team collaboration features, project tracking capabilities, and integrated time tracking.",
-    tech: ["React", "TypeScript", "Node.js", "Socket.io", "PostgreSQL"],
+    title: "Automated Face Recognition Attendance System",
+    description: "Smart attendance software utilizing AI and Computer Vision. Captures and identifies faces automatically to mark class/employee attendance, exporting details securely.",
+    tech: ["Python", "OpenCV", "face-recognition", "Numpy", "Pandas"],
     featured: false,
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=250&fit=crop",
-    github: "https://github.com/swayamgupta/task-management",
-    demo: "https://task-management-demo.com"
+    image: "https://media.istockphoto.com/id/2187996563/photo/facial-recognition-security-system.webp?a=1&b=1&s=612x612&w=0&k=20&c=XtHDxuQ2D3v1qYj2Ph7T9McGBsRYjYRIkQLuX00dP2c=",
+    github: "https://github.com/Swayamgupta07/Automated-Face-Recognition-Attendance-System",
+    demo: ""
   },
   {
     id: 5,
-    title: "Weather Analytics Dashboard",
-    description: "Real-time weather analytics dashboard with data visualization, forecasting, and historical weather data analysis using machine learning algorithms for predictions.",
-    tech: ["Angular", "TypeScript", "Python", "Flask", "Chart.js"],
+    title: "Task Management System",
+    description: "A productive checklist and task manager app for creating, assigning, organizing, and tracking tasks across teams, preventing project delays.",
+    tech: ["Angular", "HTML5", "CSS3", "TypeScript"],
     featured: false,
-    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=400&h=250&fit=crop",
-    github: "https://github.com/swayamgupta/weather-dashboard",
-    demo: "https://weather-dashboard-demo.com"
+    image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=500&h=300&fit=crop",
+    github: "https://github.com/Swayamgupta07/Task-Management-System",
+    demo: ""
   },
   {
     id: 6,
-    title: "Social Media Analytics Tool",
-    description: "Social media analytics platform with sentiment analysis, engagement tracking, automated reporting features, and AI-powered insights for optimization.",
-    tech: ["Vue.js", "Python", "Django", "Redis", "Celery"],
+    title: "Discord-Colored-Generator",
+    description: "A fun and handy utility tool for Discord users to generate custom colored markdown texts to use within Discord chats.",
+    tech: ["Next.js", "React", "Mantine", "TypeScript", "CSS3"],
     featured: false,
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=250&fit=crop",
-    github: "https://github.com/swayamgupta/social-analytics",
-    demo: "https://social-analytics-demo.com"
+    image: "/discord.png",
+    github: "https://github.com/Swayamgupta07/Discord-Colored-Generator",
+    demo: "https://discord-colored-text-generator-49e7txa51.vercel.app"
   }
 ];
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Programming Languages",
-    icon: "💻",
-    skills: [
-      { name: "C#", level: 90, icon: "🔷" },
-      { name: "JavaScript", level: 85, icon: "🟨" },
-      { name: "TypeScript", level: 80, icon: "🔵" },
-      { name: "Python", level: 75, icon: "🐍" }
-    ]
-  },
-  {
-    title: "Frameworks & Libraries",
+    title: "MEAN & MERN Full-Stack",
     icon: "⚡",
     skills: [
-      { name: "ASP.NET Core", level: 90, icon: "⚡" },
-      { name: "Angular", level: 85, icon: "🅰️" },
-      { name: "React", level: 80, icon: "⚛️" },
-      { name: "Laravel", level: 75, icon: "🔴" }
+      { name: "Angular", level: 90, icon: "🅰️" },
+      { name: "React.js & Next.js", level: 85, icon: "⚛️" },
+      { name: "Node.js & Express", level: 85, icon: "🟢" },
+      { name: "MongoDB & SQL Server", level: 80, icon: "🗄️" }
     ]
   },
   {
-    title: "Tools & Technologies",
-    icon: "🛠️",
+    title: "Microsoft Tech Stack",
+    icon: "🔷",
     skills: [
-      { name: "Git", level: 85, icon: "📝" },
-      { name: "Postman", level: 80, icon: "📮" },
-      { name: "VS Code", level: 90, icon: "💻" },
-      { name: "MongoDB Atlas", level: 75, icon: "🍃" }
+      { name: "C# Programming", level: 90, icon: "🔷" },
+      { name: "ASP.NET Core", level: 85, icon: "⚡" },
+      { name: ".NET MAUI (Mobile)", level: 80, icon: "📱" }
     ]
   },
   {
-    title: "UI & Design",
+    title: "Python, AI & Data Science",
+    icon: "🐍",
+    skills: [
+      { name: "Python", level: 80, icon: "🐍" },
+      { name: "OpenCV & Face Recognition", level: 80, icon: "📷" },
+      { name: "Numpy & Pandas", level: 75, icon: "📊" }
+    ]
+  },
+  {
+    title: "Design & Languages",
     icon: "🎨",
     skills: [
-      { name: "Bootstrap", level: 85, icon: "🎨" },
-      { name: "Tailwind CSS", level: 80, icon: "💨" },
-      { name: "Responsive Design", level: 85, icon: "📱" },
-      { name: "UI/UX Principles", level: 75, icon: "✨" }
+      { name: "TypeScript & JavaScript", level: 85, icon: "🔵" },
+      { name: "Mantine & Tailwind CSS", level: 85, icon: "💨" },
+      { name: "Responsive Layouts", level: 90, icon: "📱" }
     ]
   }
 ];
@@ -262,60 +227,22 @@ export const additionalCompetencies: Competency[] = [
   { skill: "Agile/Scrum", icon: "🔄" },
   { skill: "RESTful APIs", icon: "🔗" },
   { skill: "Database Design", icon: "🗄️" },
-  { skill: "Cloud Computing", icon: "☁️" },
-  { skill: "DevOps", icon: "🚀" },
-  { skill: "Testing", icon: "🧪" },
-  { skill: "Security", icon: "🔒" },
-  { skill: "Performance", icon: "⚡" }
+  { skill: "Cross-Platform Mobile Dev", icon: "📱" },
+  { skill: "DevOps Basics", icon: "🚀" },
+  { skill: "Automated Testing", icon: "🧪" },
+  { skill: "Git Flow", icon: "🐙" },
+  { skill: "UI/UX Principles", icon: "✨" }
 ];
 
 export const skillStats: Highlight[] = [
-  { number: "4+", label: "Years of Experience", icon: "⏱️" },
-  { number: "8+", label: "Technologies Mastered", icon: "🎯" },
+  { number: "1+", label: "Year Experience", icon: "⏱️" },
+  { number: "10+", label: "Technologies Mastered", icon: "🎯" },
   { number: "15+", label: "Projects Built", icon: "🏗️" }
-];
-
-export const publications: PublicationItem[] = [
-  {
-    id: 1,
-    type: "Patent",
-    title: "Intelligent Doctor Appointment Scheduling System",
-    description: "A patent-pending system for optimizing doctor appointment scheduling using machine learning algorithms and real-time availability tracking. The system reduces wait times by 40% and improves patient satisfaction through intelligent scheduling optimization.",
-    status: "Patent Pending",
-    date: "2024",
-    pdfLink: "/patent-document.pdf",
-    icon: "📋",
-    featured: true
-  },
-  {
-    id: 2,
-    type: "IEEE Paper",
-    title: "Scalable Web Applications Using Microservices Architecture",
-    description: "Research paper on implementing microservices architecture for large-scale web applications with improved performance and maintainability. The study demonstrates 60% improvement in system scalability and 35% reduction in deployment time.",
-    journal: "IEEE Computer Society",
-    date: "2023",
-    doi: "10.1109/EXAMPLE.2023.123456",
-    link: "https://ieeexplore.ieee.org/document/example",
-    icon: "📄",
-    featured: false
-  },
-  {
-    id: 3,
-    type: "Research Paper",
-    title: "AI-Powered Graph Visualization and Analysis",
-    description: "Comprehensive study on implementing artificial intelligence in graph visualization tools for enhanced data analysis and pattern recognition. The research introduces novel algorithms for automatic graph layout optimization and intelligent data clustering.",
-    journal: "International Journal of Computer Science",
-    date: "2023",
-    doi: "10.1234/IJCS.2023.567890",
-    link: "https://ijcs.example.com/article/567890",
-    icon: "🔬",
-    featured: false
-  }
 ];
 
 export const projectStats: Highlight[] = [
   { number: "15+", label: "Projects Completed", icon: "🚀" },
-  { number: "3", label: "Internships", icon: "💼" },
-  { number: "1", label: "Patent Pending", icon: "📋" },
-  { number: "10K+", label: "Users Served", icon: "👥" }
+  { number: "2", label: "Company Exposures", icon: "💼" },
+  { number: "1", label: "Patent Pending (Hold)", icon: "📋" },
+  { number: "5K+", label: "Users Served", icon: "👥" }
 ];

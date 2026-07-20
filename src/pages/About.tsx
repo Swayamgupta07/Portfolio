@@ -41,9 +41,8 @@ export default function About({ isDarkMode }: AboutProps) {
             <p className={`text-lg leading-relaxed mb-6 ${
               isDarkMode ? 'text-gray-300' : 'text-gray-700'
             }`}>
-              I'm a final-year Computer Science student at SRM University specializing in full-stack web development 
-              with .NET Core and Angular. With hands-on experience from internships at ISRO and Stratbeans, plus a 
-              patent-pending doctor appointment system, I build scalable, user-friendly tech solutions.
+              I'm a Computer Science graduate from SRM University (2025) currently working at Wipro as a MEAN Stack Developer. 
+              I specialize in full-stack web development using Angular, React, .NET Core, and .NET MAUI. I build scalable, user-friendly, and modern tech solutions.
             </p>
 
             <p className={`leading-relaxed mb-8 ${
@@ -63,7 +62,7 @@ export default function About({ isDarkMode }: AboutProps) {
               <p className={`text-sm ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                Enterprise web applications at Maven Technosoft, serving 10,000+ users with cutting-edge .NET Core and Angular solutions.
+                Modern web applications at Wipro, building responsive user interfaces and scalable APIs using MongoDB, Express, Angular, and Node.js.
               </p>
             </div>
           </div>
@@ -101,7 +100,6 @@ export default function About({ isDarkMode }: AboutProps) {
         </div>
       </div>
 
-      {/* Timeline Section */}
       <div className="mb-16">
         <h3 className={`text-3xl font-bold text-center mb-12 ${
           isDarkMode ? 'text-white' : 'text-gray-900'

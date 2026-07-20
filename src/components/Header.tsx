@@ -16,7 +16,6 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
     { path: "/projects", label: "Projects" },
     { path: "/experience", label: "Experience" },
     { path: "/skills", label: "Skills" },
-    { path: "/patents", label: "Patents" },
     { path: "/contact", label: "Contact" },
   ];
 

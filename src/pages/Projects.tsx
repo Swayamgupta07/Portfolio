@@ -4,7 +4,7 @@ import SectionWrapper from "../components/SectionWrapper";
 import SectionHeader from "../components/SectionHeader";
 import { projects, projectStats } from "../data/portfolioData";
 
-const allTech = ["All", "React", "Node.js", "Laravel", "Python", "MongoDB", "MySQL", "Angular", "TypeScript"];
+const allTech = ["All", "React", "Node.js", "Python", "MongoDB", "MySQL", "Angular", "TypeScript"];
 
 interface ProjectsProps {
   isDarkMode: boolean;
@@ -25,7 +25,6 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
         isDarkMode={isDarkMode}
       />
 
-      {/* Tech Filter */}
       <div className="flex flex-wrap justify-center gap-3 mb-16">
         {allTech.map((tech) => (
           <button
@@ -46,7 +45,6 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
         ))}
       </div>
 
-      {/* Projects Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProjects.map((project) => (
           <ProjectCard 
@@ -57,7 +55,6 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
         ))}
       </div>
 
-      {/* Stats Section */}
       <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
         {projectStats.map((stat, index) => (
           <div key={index} className={`text-center p-6 rounded-2xl transition-all duration-300 hover:scale-105 ${

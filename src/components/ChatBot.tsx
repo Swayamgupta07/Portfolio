@@ -39,7 +39,6 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
     setInputMessage("");
     setIsLoading(true);
 
-    // Simulate typing delay for a natural feel
     setTimeout(() => {
       const botResponse = generateLocalResponse(currentMessage);
       const aiMessage: Message = {
@@ -56,35 +55,35 @@ export default function ChatBot({ isDarkMode }: ChatBotProps) {
   const generateLocalResponse = (question: string): string => {
     const lowerQuestion = question.toLowerCase();
     
-    if (lowerQuestion.includes("experience") || lowerQuestion.includes("work") || lowerQuestion.includes("job") || lowerQuestion.includes("intern") || lowerQuestion.includes("company")) {
-      return "Swayam has impressive experience! He's currently a Full-Stack Developer at Maven Technosoft working on enterprise applications serving 10,000+ users. He also did a Software Development Internship at ISRO (working on satellite data processing systems) and a Web Development Internship at Stratbeans (focusing on frontend development and UX optimization).";
+    if (lowerQuestion.includes("experience") || lowerQuestion.includes("work") || lowerQuestion.includes("job") || lowerQuestion.includes("company") || lowerQuestion.includes("wipro") || lowerQuestion.includes("maven")) {
+      return "Swayam is currently a MEAN Stack Developer at Wipro (joined as a fresher). Before Wipro, he spent 8 months working full-time and 3 months in training (11 months total) at Maven Technosoft, specializing in Angular, .NET Core, and .NET MAUI.";
     }
     
     if (lowerQuestion.includes("skills") || lowerQuestion.includes("technology") || lowerQuestion.includes("tech") || lowerQuestion.includes("languages")) {
-      return "Swayam specializes in .NET Core (ASP.NET Core), Angular, React/MERN stack, and Laravel (PHP). His core programming skills include C#, JavaScript, TypeScript, and Python. He is also proficient in tools like Git, Postman, MongoDB Atlas, and CSS frameworks like Tailwind CSS & Bootstrap.";
+      return "Swayam's skills span across MEAN stack (MongoDB, Express, Angular, Node.js), MERN stack (React.js & Next.js), Microsoft stack (C#, ASP.NET Core, .NET MAUI, SQL Server), Python (OpenCV, AI, face-recognition, Numpy, Pandas), and modern UI frameworks like Mantine & Tailwind CSS.";
     }
     
     if (lowerQuestion.includes("project") || lowerQuestion.includes("portfolio") || lowerQuestion.includes("built")) {
-      return "Swayam has built several featured projects: \n1. A Doctor Appointment Website using the MERN stack with a patent-pending appointment scheduling system.\n2. A Graph Builder and Visualizer with AI-powered search (built with Brython & Python).\n3. An E-commerce Platform built with Laravel & MySQL.\n4. A collaborative Task Management System.";
+      return "Swayam has built several real projects:\n1. Yummy Food Restaurant System (MEAN Stack)\n2. Employee Management System (.NET & Angular)\n3. eCart (MEAN Stack)\n4. Automated Face Recognition Attendance System (Python, OpenCV, face-recognition)\n5. Task Management System (Angular)\n6. Discord-Colored-Generator (Next.js, Mantine, TypeScript)";
     }
     
-    if (lowerQuestion.includes("education") || lowerQuestion.includes("university") || lowerQuestion.includes("study") || lowerQuestion.includes("college")) {
-      return "Swayam is in his final year of pursuing a Bachelor's degree in Computer Science at SRM University. His studies are complemented by strong practical experience from high-profile internships and hackathons.";
+    if (lowerQuestion.includes("education") || lowerQuestion.includes("university") || lowerQuestion.includes("study") || lowerQuestion.includes("college") || lowerQuestion.includes("srm")) {
+      return "Swayam graduated from SRM University in 2025 with a Bachelor's degree in Computer Science, which gave him a solid foundation in software development.";
     }
     
-    if (lowerQuestion.includes("patent") || lowerQuestion.includes("research") || lowerQuestion.includes("ieee") || lowerQuestion.includes("paper")) {
-      return "Swayam has a patent-pending 'Intelligent Doctor Appointment Scheduling System' that uses machine learning algorithms for optimized scheduling. He is also an IEEE published author, with contributions to scalable web applications and AI-powered graph visualization.";
+    if (lowerQuestion.includes("patent") || lowerQuestion.includes("research") || lowerQuestion.includes("scheduling") || lowerQuestion.includes("doctor")) {
+      return "Swayam has a patent-pending work on 'Near Optimal Patient Scheduling for Effective Doctor Appointment System'. The patent is currently on hold, and he has a copy of the PDF document.";
     }
     
     if (lowerQuestion.includes("contact") || lowerQuestion.includes("reach") || lowerQuestion.includes("email") || lowerQuestion.includes("linkedin") || lowerQuestion.includes("github")) {
-      return "You can reach Swayam in the following ways:\n- Email: swayamgupta09@gmail.com\n- LinkedIn: linkedin.com/in/swayam-gupta07\n- GitHub: github.com/Swayamgupta07\n- Or you can leave a message on the Contact Page!";
+      return "You can contact Swayam via:\n- Email: swayamgupta09@gmail.com\n- LinkedIn: linkedin.com/in/swayam-gupta07\n- GitHub: github.com/Swayamgupta07\n- Or send a message using the Contact page!";
     }
     
     if (lowerQuestion.includes("hello") || lowerQuestion.includes("hi") || lowerQuestion.includes("hey") || lowerQuestion.includes("greetings")) {
-      return "Hello! I'm Swayam's helper bot. Ask me anything about his experience, skills, projects, patents, or how to contact him. What would you like to know?";
+      return "Hello! I'm Swayam's helper bot. Ask me anything about his experience at Wipro/Maven, his skills, projects, or how to contact him!";
     }
     
-    return "That's a great question! Swayam is a skilled developer specializing in .NET Core and Angular with real-world experience at ISRO and Maven Technosoft. Feel free to ask about his 'experience', 'skills', 'projects', 'patent', 'education', or 'contact' details.";
+    return "I can help you learn more about Swayam Gupta! Feel free to ask about his 'experience' (Wipro & Maven), 'skills' (MEAN, .NET, Angular, React), 'projects' (eCart, TruYum, Face Recognition, etc.), 'education', or 'contact' details.";
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {

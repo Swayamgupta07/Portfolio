@@ -7,7 +7,6 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
 import Skills from "./pages/Skills";
-import Patents from "./pages/Patents";
 import Contact from "./pages/Contact";
 import ChatBot from "./components/ChatBot";
 
@@ -53,7 +52,6 @@ export default function App() {
             <Route path="/projects" element={<Projects isDarkMode={isDarkMode} />} />
             <Route path="/experience" element={<Experience isDarkMode={isDarkMode} />} />
             <Route path="/skills" element={<Skills isDarkMode={isDarkMode} />} />
-            <Route path="/patents" element={<Patents isDarkMode={isDarkMode} />} />
             <Route path="/contact" element={<Contact isDarkMode={isDarkMode} />} />
           </Routes>
         </main>

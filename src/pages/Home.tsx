@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
+import { typewriterWords } from "../data/portfolioData";
 
 interface HomeProps {
   isDarkMode: boolean;
@@ -35,48 +36,41 @@ export default function Home({ isDarkMode }: HomeProps) {
         <div className="mb-12 animate-fade-in">
           {/* Profile Image + Connected Green Dot */}
           <div className="relative w-fit mx-auto mt-10 mb-6 pb-4 group">
-  <img
-    src="/Photo.jpg"
-    width={200}
-    height={200}
-    alt="Swayam Gupta profile picture - Full-Stack Developer"
-    className="w-40 h-40 rounded-full mx-auto shadow-2xl border-4 border-white/30 group-hover:border-green-500 transition-all duration-300"
-    draggable={false}
-  />
-  {/* "Active Now" text appears on hover - positioned on left side */}
-  <span
-  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[120%] px-3 py-1 rounded-lg bg-green-500 text-white text-xs font-semibold shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200"
-  style={{ pointerEvents: "none" }}
->
-  Active Now
-</span>
+            <img
+              src="/Photo.jpg"
+              width={200}
+              height={200}
+              alt="Swayam Gupta profile picture - Full-Stack Developer"
+              className="w-40 h-40 rounded-full mx-auto shadow-2xl border-4 border-white/30 group-hover:border-green-500 transition-all duration-300"
+              draggable={false}
+            />
+            <span
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[120%] px-3 py-1 rounded-lg bg-green-500 text-white text-xs font-semibold shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200"
+              style={{ pointerEvents: "none" }}
+            >
+              Active Now
+            </span>
+          </div>
 
-
-
-
-</div>
-
-
-          {/* Fun animated name with shimmer gradient */}
           <h1
             className={`relative text-5xl md:text-7xl font-bold mb-4
               bg-gradient-to-r bg-clip-text text-transparent
               transition-all duration-300 hover:scale-105
               animate-shimmer
-              ${isDarkMode
-                ? "from-white via-blue-200 to-purple-300"
-                : "from-gray-900 via-blue-800 to-purple-800"
+              ${
+                isDarkMode
+                  ? "from-white via-blue-200 to-purple-300"
+                  : "from-gray-900 via-blue-800 to-purple-800"
               }`}
             style={{
               backgroundSize: "200% 100%",
               backgroundPosition: "left center",
-              animation: "shimmer 3s linear infinite"
+              animation: "shimmer 3s linear infinite",
             }}
           >
             Swayam Gupta
           </h1>
 
-          {/* Dynamic typewriter effect for skills/roles */}
           <h2
             className={`text-xl md:text-2xl mb-6 font-medium ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
           >
@@ -85,14 +79,7 @@ export default function Home({ isDarkMode }: HomeProps) {
             </span>
             <span>
               <Typewriter
-                words={[
-                  "Full-Stack Developer",
-                  ".NET Core Specialist",
-                  "Angular Enthusiast",
-                  "React/MERN Builder",
-                  "Laravel (PHP) Developer",
-                  "IEEE Published Author",
-                ]}
+                words={typewriterWords}
                 loop={0}
                 cursor
                 cursorStyle="_"
@@ -102,58 +89,40 @@ export default function Home({ isDarkMode }: HomeProps) {
               />
             </span>
           </h2>
-
-          {/* Optional personal statement */}
           <div
             className={`text-md md:text-lg italic mb-6 ${isDarkMode ? "text-blue-200" : "text-blue-700"}`}
           >
-            Turning complex ideas into scalable, user-focused software solutions.
+            Living the corporate fresher life 😄 (and coding away at Wipro!)
           </div>
 
-          {/* Main description */}
           <p
             className={`text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed ${
               isDarkMode ? "text-gray-400" : "text-gray-700"
             }`}
           >
-            <span className={`font-semibold ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}>
-              Full-Stack Developer
-            </span>{" "}
-            skilled in
-            <span className={`font-semibold ${isDarkMode ? "text-red-400" : "text-red-600"}`}>
-              {" "}
-              .NET Core
+            Hlo! My name is{" "}
+            <span className="font-semibold text-blue-500">Swayam Gupta</span>,
+            and I am currently working as a fresher in{" "}
+            <span className="font-semibold text-purple-500">Wipro</span>. I got
+            a role as a{" "}
+            <span className="font-semibold text-green-500">
+              MEAN Stack Developer
             </span>
-            ,
-            <span className={`font-semibold ${isDarkMode ? "text-green-400" : "text-green-600"}`}>
-              {" "}
-              Angular
+            , but I also specialize in{" "}
+            <span className="font-semibold text-blue-400">.NET Core</span>,
+            <span className="font-semibold text-red-500">Angular</span>,{" "}
+            <span className="font-semibold text-cyan-500">React</span>, and
+            modern web technologies (both MEAN & MERN stacks). Before Wipro, I
+            spent 8 months working full-time and 3 months in training (11 months
+            total!) at{" "}
+            <span className="font-semibold text-indigo-500">
+              Maven Technosoft
             </span>
-            ,
-            <span className={`font-semibold ${isDarkMode ? "text-cyan-400" : "text-cyan-600"}`}>
-              {" "}
-              React/MERN
-            </span>
-            , and
-            <span className={`font-semibold ${isDarkMode ? "text-pink-400" : "text-pink-600"}`}>
-              {" "}
-              Laravel (PHP)
-            </span>
-            .
-            <br />
-            Backed by{" "}
-            <span className={`font-semibold ${isDarkMode ? "text-purple-400" : "text-purple-600"}`}>
-              hackathons, real-world projects, and an IEEE publication
-            </span>
-            , I thrive on building{" "}
-            <span className={`font-semibold ${isDarkMode ? "text-yellow-400" : "text-yellow-600"}`}>
-              scalable & user-focused solutions
-            </span>
-            .
+            , playing with .NET Core, Angular, and .NET MAUI. And everything
+            before that? Well, let's just say it's history now!
           </p>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center mb-14">
           <Link
             to="/projects"
@@ -209,7 +178,6 @@ export default function Home({ isDarkMode }: HomeProps) {
           </Link>
         </div>
 
-        {/* Social & Copy-to-Clipboard */}
         <div className="flex justify-center space-x-8 mb-8">
           {/* GitHub */}
           <a
@@ -231,7 +199,6 @@ export default function Home({ isDarkMode }: HomeProps) {
               <path d="M12,0C5.373,0,0,5.373,0,12c0,5.302,3.438,9.8,8.207,11.387c0.599,0.111,0.793-0.261,0.793-0.577l0-2.234c-3.338,0.726-4.033-1.416-4.033-1.416C4.42,18.61,3.633,18.241,3.633,18.241c-0.89-0.606,0.067-0.594,0.067-0.594c0.984,0.068,1.501,1.012,1.501,1.012c0.875,1.5,2.295,1.067,2.86,0.817c0.089-0.635,0.343-1.067,0.624-1.312c-2.665-0.305-5.466-1.334-5.466-5.93c0-1.311,0.469-2.381,1.236-3.221c-0.125-0.303-0.535-1.523,0.117-3.176c0,0,1.008-0.323,3.301,1.23c0.957-0.266,1.983-0.399,3.003-0.404c1.02,0.005,2.047,0.138,3.006,0.404c2.291-1.553,3.297-1.23,3.297-1.23c0.653,1.653,0.243,2.874,0.119,3.176c0.77,0.84,1.235,1.911,1.235,3.221c0,4.61-2.807,5.624-5.479,5.921c0.43,0.372,0.823,1.102,0.823,2.222l0,3.293c0,0.319,0.192,0.694,0.801,0.576C20.565,21.799,24,17.301,24,12C24,5.373,18.627,0,12,0z" />
             </svg>
           </a>
-          {/* LinkedIn */}
           <a
             href="https://linkedin.com/in/swayam-gupta07"
             target="_blank"
@@ -277,7 +244,9 @@ export default function Home({ isDarkMode }: HomeProps) {
             </svg>
           </button>
         </div>
-        <div className={`text-xs text-center ${isDarkMode ? "text-gray-600" : "text-gray-400"} mt-6 opacity-80`}>
+        <div
+          className={`text-xs text-center ${isDarkMode ? "text-gray-600" : "text-gray-400"} mt-6 opacity-80`}
+        >
           &copy; {new Date().getFullYear()} Swayam Gupta. Portfolio.
         </div>
       </div>

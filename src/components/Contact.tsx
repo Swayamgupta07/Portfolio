@@ -91,7 +91,7 @@ export default function Contact({ isDarkMode }: ContactProps) {
               ),
               title: "LinkedIn",
               value: "linkedin.com",
-              href: "https://linkedin.com/swayam-gupta07"
+              href: "https://linkedin.com/in/swayam-gupta07"
             },
             {
               icon: (
