@@ -8,7 +8,11 @@ interface ContactPageProps {
 
 export default function ContactPage({ isDarkMode }: ContactPageProps) {
   return (
-    <SectionWrapper isDarkMode={isDarkMode} className={isDarkMode ? 'bg-gray-800' : 'bg-white'}>
+    <SectionWrapper
+      id="contact"
+      isDarkMode={isDarkMode}
+      className={isDarkMode ? "bg-slate-900 border-b border-gray-800" : "bg-white border-b border-gray-100"}
+    >
       <SectionHeader
         title="Get In Touch"
         subtitle="I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology. Let's connect and build something amazing together!"

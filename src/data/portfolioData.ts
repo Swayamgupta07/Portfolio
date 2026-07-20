@@ -74,7 +74,7 @@ export const timeline: TimelineItem[] = [
     current: true
   },
   {
-    year: "2025",
+    year: "2025 - 2026",
     title: "Full-Stack Developer",
     company: "Maven Technosoft",
     description: "Full-stack development with .NET Core, Angular, and cross-platform mobile apps with .NET MAUI (8 months full-time, 3 months training).",
@@ -95,7 +95,7 @@ export const experiences: ExperienceItem[] = [
     company: "Wipro",
     role: "MEAN Stack Developer",
     period: "2026 - Present",
-    location: "Noida, India",
+    location: "Pune, India",
     description: "Working as a MEAN stack fresher developer, designing robust APIs and modern responsive web interfaces.",
     achievements: [
       "Collaborating on enterprise-level MEAN Stack application development flows",
@@ -108,8 +108,8 @@ export const experiences: ExperienceItem[] = [
     id: 2,
     company: "Maven Technosoft",
     role: "Full-Stack Developer",
-    period: "2025 (11 Months)",
-    location: "Remote / Noida",
+    period: "2025 - 2026 (11 Months)",
+    location: "Hybrid / Noida",
     description: "Worked as a full-stack developer (8 months full-time, preceded by 3 months of rigorous training) creating enterprise desktop, mobile, and web applications.",
     achievements: [
       "Developed cross-platform mobile app modules using .NET MAUI",

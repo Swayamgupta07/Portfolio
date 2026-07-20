@@ -136,10 +136,8 @@ export default function Contact({ isDarkMode }: ContactProps) {
   <ul className={`space-y-3 text-sm leading-relaxed ${
     isDarkMode ? 'text-gray-300' : 'text-gray-700'
   }`}>
-    <li>📍 <span className="sr-only">Location:</span> Based in Kanpur, India</li>
+    <li>📍 <span className="sr-only">Location:</span> In Pune, India</li>
     <li>⚡ <span className="sr-only">Response time:</span> Within 24 hours</li>
-    <li>🌍 <span className="sr-only">Availability:</span> Open for remote and office work</li>
-    <li>💼 <span className="sr-only">Opportunities:</span> Open to new opportunities</li>
   </ul>
 </aside>
       </div>

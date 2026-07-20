@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
-import { useState } from "react";
+import gsap from "gsap";
 import { typewriterWords } from "../data/portfolioData";
 
 interface HomeProps {
@@ -8,40 +8,128 @@ interface HomeProps {
 }
 
 export default function Home({ isDarkMode }: HomeProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const bioRef = useRef<HTMLParagraphElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const socialsRef = useRef<HTMLDivElement>(null);
+
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     alert("Copied to clipboard!");
   };
 
-  const [dotHovered, setDotHovered] = useState(false);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Background blobs animate slowly
+      gsap.to(".blob-1", {
+        x: "50px",
+        y: "-30px",
+        scale: 1.1,
+        duration: 8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+      gsap.to(".blob-2", {
+        x: "-40px",
+        y: "40px",
+        scale: 0.9,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      // Hero entrance animations
+      const tl = gsap.timeline();
+      tl.fromTo(
+        imageRef.current,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }
+      );
+      tl.fromTo(
+        titleRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+        "-=0.4"
+      );
+      tl.fromTo(
+        ".typewriter-h2",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+        "-=0.3"
+      );
+      tl.fromTo(
+        ".personal-statement",
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
+        "-=0.2"
+      );
+      tl.fromTo(
+        bioRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+        "-=0.3"
+      );
+      tl.fromTo(
+        buttonsRef.current?.children,
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, stagger: 0.15, ease: "back.out(1.5)" },
+        "-=0.3"
+      );
+      tl.fromTo(
+        socialsRef.current?.children,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, stagger: 0.1, ease: "power2.out" },
+        "-=0.2"
+      );
+      tl.fromTo(
+        ".chevron-down",
+        { opacity: 0, y: -10 },
+        { opacity: 0.8, y: 0, duration: 0.5, ease: "power2.out" },
+        "-=0.1"
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div
-      className={`min-h-screen flex items-center justify-center relative overflow-hidden ${
+    <section
+      id="home"
+      ref={containerRef}
+      className={`min-h-screen flex items-center justify-center relative overflow-hidden noise-overlay ${
         isDarkMode
-          ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
-          : "bg-gradient-to-br from-blue-50 via-white to-indigo-100"
+          ? "bg-slate-950 text-white"
+          : "bg-gradient-to-br from-blue-50 via-white to-indigo-50 text-slate-900"
       }`}
     >
-      {/* Decorative background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Dynamic Animated Blur Blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div
-          className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full opacity-10 blur-2xl ${
-            isDarkMode ? "bg-purple-500" : "bg-purple-300"
+          className={`blob-1 absolute top-10 left-10 w-96 h-96 rounded-full filter blur-[100px] opacity-[0.12] ${
+            isDarkMode ? "bg-purple-600" : "bg-purple-300"
           }`}
-        ></div>
+        />
+        <div
+          className={`blob-2 absolute bottom-20 right-10 w-[500px] h-[500px] rounded-full filter blur-[120px] opacity-[0.12] ${
+            isDarkMode ? "bg-blue-600" : "bg-blue-300"
+          }`}
+        />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div className="mb-12 animate-fade-in">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-20 flex flex-col justify-center min-h-screen">
+        <div className="mb-8">
           {/* Profile Image + Connected Green Dot */}
-          <div className="relative w-fit mx-auto mt-10 mb-6 pb-4 group">
+          <div className="relative w-fit mx-auto mt-6 mb-6 pb-2 group" ref={imageRef}>
             <img
               src="/Photo.jpg"
-              width={200}
-              height={200}
+              width={160}
+              height={160}
               alt="Swayam Gupta profile picture - Full-Stack Developer"
-              className="w-40 h-40 rounded-full mx-auto shadow-2xl border-4 border-white/30 group-hover:border-green-500 transition-all duration-300"
+              className="w-36 h-36 md:w-40 md:h-40 rounded-full mx-auto shadow-2xl border-4 border-white/30 group-hover:border-green-500 transition-all duration-300 pointer-events-auto cursor-pointer"
               draggable={false}
             />
             <span
@@ -52,16 +140,14 @@ export default function Home({ isDarkMode }: HomeProps) {
             </span>
           </div>
 
+          {/* Fun animated name with shimmer gradient */}
           <h1
-            className={`relative text-5xl md:text-7xl font-bold mb-4
-              bg-gradient-to-r bg-clip-text text-transparent
-              transition-all duration-300 hover:scale-105
-              animate-shimmer
-              ${
-                isDarkMode
-                  ? "from-white via-blue-200 to-purple-300"
-                  : "from-gray-900 via-blue-800 to-purple-800"
-              }`}
+            ref={titleRef}
+            className={`relative text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r bg-clip-text text-transparent transition-all duration-300 hover:scale-105 animate-shimmer select-none ${
+              isDarkMode
+                ? "from-white via-blue-200 to-purple-300"
+                : "from-gray-900 via-blue-800 to-purple-800"
+            }`}
             style={{
               backgroundSize: "200% 100%",
               backgroundPosition: "left center",
@@ -71,8 +157,11 @@ export default function Home({ isDarkMode }: HomeProps) {
             Swayam Gupta
           </h1>
 
+          {/* Dynamic typewriter effect for skills/roles */}
           <h2
-            className={`text-xl md:text-2xl mb-6 font-medium ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+            className={`typewriter-h2 text-xl md:text-2xl mb-6 font-medium ${
+              isDarkMode ? "text-gray-300" : "text-gray-600"
+            }`}
           >
             <span className="mr-2 inline-block animate-bounce" aria-hidden>
               💻
@@ -89,47 +178,42 @@ export default function Home({ isDarkMode }: HomeProps) {
               />
             </span>
           </h2>
+
           <div
-            className={`text-md md:text-lg italic mb-6 ${isDarkMode ? "text-blue-200" : "text-blue-700"}`}
+            className={`personal-statement text-md md:text-lg italic mb-6 ${
+              isDarkMode ? "text-blue-200" : "text-blue-700"
+            }`}
           >
             Living the corporate fresher life 😄 (and coding away at Wipro!)
           </div>
 
           <p
+            ref={bioRef}
             className={`text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed ${
               isDarkMode ? "text-gray-400" : "text-gray-700"
             }`}
           >
-            Hlo! My name is{" "}
-            <span className="font-semibold text-blue-500">Swayam Gupta</span>,
-            and I am currently working as a fresher in{" "}
-            <span className="font-semibold text-purple-500">Wipro</span>. I got
-            a role as a{" "}
-            <span className="font-semibold text-green-500">
-              MEAN Stack Developer
-            </span>
-            , but I also specialize in{" "}
-            <span className="font-semibold text-blue-400">.NET Core</span>,
+            Hlo! My name is <span className="font-semibold text-blue-500">Swayam Gupta</span>, and
+            I am currently working as a fresher in <span className="font-semibold text-purple-500">Wipro</span>. 
+            I got a role as a <span className="font-semibold text-green-500">MEAN Stack Developer</span>, but
+            I also specialize in <span className="font-semibold text-blue-400">.NET Core</span>,{" "}
             <span className="font-semibold text-red-500">Angular</span>,{" "}
-            <span className="font-semibold text-cyan-500">React</span>, and
-            modern web technologies (both MEAN & MERN stacks). Before Wipro, I
-            spent 8 months working full-time and 3 months in training (11 months
-            total!) at{" "}
-            <span className="font-semibold text-indigo-500">
-              Maven Technosoft
-            </span>
-            , playing with .NET Core, Angular, and .NET MAUI. And everything
-            before that? Well, let's just say it's history now!
+            <span className="font-semibold text-cyan-500">React</span>, and modern web technologies
+            (both MEAN & MERN stacks). Before Wipro, I spent 8 months working full-time and 3 months
+            in training (11 months total!) at <span className="font-semibold text-indigo-500">Maven Technosoft</span>,
+            playing with .NET Core, Angular, and .NET MAUI. And everything before that? Well, let's
+            just say it's history now!
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-14">
-          <Link
-            to="/projects"
-            className={`group px-8 py-4 font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl ${
+        {/* Shiny Buttons */}
+        <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center mb-14">
+          <a
+            href="#projects"
+            className={`shiny-btn group px-8 py-4 font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-center glow-blue ${
               isDarkMode
-                ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700"
-                : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+                ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+                : "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
             }`}
             aria-label="View Projects"
           >
@@ -149,12 +233,12 @@ export default function Home({ isDarkMode }: HomeProps) {
                 />
               </svg>
             </span>
-          </Link>
-          <Link
-            to="/contact"
-            className={`group px-8 py-4 border-2 font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm ${
+          </a>
+          <a
+            href="#contact"
+            className={`group px-8 py-4 border-2 font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-center ${
               isDarkMode
-                ? "border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900 bg-white/5"
+                ? "border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-slate-950 bg-white/5"
                 : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white bg-white/30"
             }`}
             aria-label="Contact Me"
@@ -175,19 +259,19 @@ export default function Home({ isDarkMode }: HomeProps) {
               </svg>
               <span>Get In Touch</span>
             </span>
-          </Link>
+          </a>
         </div>
 
-        <div className="flex justify-center space-x-8 mb-8">
-          {/* GitHub */}
+        {/* Social Icons */}
+        <div ref={socialsRef} className="flex justify-center space-x-8 mb-4">
           <a
             href="https://github.com/Swayamgupta07"
             target="_blank"
             rel="noopener noreferrer"
             className={`group p-4 rounded-full transition-all duration-300 transform hover:scale-110 hover:shadow-lg ${
               isDarkMode
-                ? "bg-gray-800/50 text-gray-300 hover:text-blue-400 hover:bg-gray-700/50 backdrop-blur-sm"
-                : "bg-white/60 text-gray-600 hover:text-blue-600 hover:bg-white/80 backdrop-blur-sm"
+                ? "bg-slate-900/50 text-gray-300 hover:text-blue-400 hover:bg-slate-800/50 backdrop-blur-sm"
+                : "bg-white/60 text-gray-600 hover:text-blue-600 hover:bg-white/80 backdrop-blur-sm border border-gray-200"
             }`}
             aria-label="GitHub"
           >
@@ -205,8 +289,8 @@ export default function Home({ isDarkMode }: HomeProps) {
             rel="noopener noreferrer"
             className={`group p-4 rounded-full transition-all duration-300 transform hover:scale-110 hover:shadow-lg ${
               isDarkMode
-                ? "bg-gray-800/50 text-gray-300 hover:text-blue-400 hover:bg-gray-700/50 backdrop-blur-sm"
-                : "bg-white/60 text-gray-600 hover:text-blue-600 hover:bg-white/80 backdrop-blur-sm"
+                ? "bg-slate-900/50 text-gray-300 hover:text-blue-400 hover:bg-slate-800/50 backdrop-blur-sm"
+                : "bg-white/60 text-gray-600 hover:text-blue-600 hover:bg-white/80 backdrop-blur-sm border border-gray-200"
             }`}
             aria-label="LinkedIn"
           >
@@ -218,13 +302,12 @@ export default function Home({ isDarkMode }: HomeProps) {
               <path d="M20.447,20.452h-3.554V14.883c0-1.328-0.027-3.037-1.852-3.037c-1.853,0-2.137,1.445-2.137,2.939v5.667H9.351V9h3.414v1.561h0.046c0.477-0.9,1.637-1.85,3.37-1.85c3.601,0,4.267,2.37,4.267,5.455V20.452z M5.337,7.433c-1.143,0-2.063-0.926-2.063-2.065c0-1.138,0.92-2.063,2.063-2.063c1.141,0,2.065,0.925,2.065,2.063C7.402,6.507,6.478,7.433,5.337,7.433z M7.119,20.452H3.555V9h3.564V20.452z" />
             </svg>
           </a>
-          {/* Email with copy-to-clipboard */}
           <button
             onClick={() => handleCopy("swayamgupta09@gmail.com")}
-            className={`group p-4 rounded-full transition-all duration-300 transform hover:scale-110 hover:shadow-lg focus:outline-none ${
+            className={`group p-4 rounded-full transition-all duration-300 transform hover:scale-110 hover:shadow-lg focus:outline-none cursor-pointer ${
               isDarkMode
-                ? "bg-gray-800/50 text-gray-300 hover:text-blue-400 hover:bg-gray-700/50 backdrop-blur-sm"
-                : "bg-white/60 text-gray-600 hover:text-blue-600 hover:bg-white/80 backdrop-blur-sm"
+                ? "bg-slate-900/50 text-gray-300 hover:text-blue-400 hover:bg-slate-800/50 backdrop-blur-sm"
+                : "bg-white/60 text-gray-600 hover:text-blue-600 hover:bg-white/80 backdrop-blur-sm border border-gray-200"
             }`}
             aria-label="Copy Email"
             title="Copy Email"
@@ -244,12 +327,22 @@ export default function Home({ isDarkMode }: HomeProps) {
             </svg>
           </button>
         </div>
-        <div
-          className={`text-xs text-center ${isDarkMode ? "text-gray-600" : "text-gray-400"} mt-6 opacity-80`}
-        >
-          &copy; {new Date().getFullYear()} Swayam Gupta. Portfolio.
+
+        {/* Scroll indicator bouncing down */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 scroll-indicator cursor-pointer opacity-75 hidden md:block">
+          <a href="#about" aria-label="Scroll Down">
+            <svg
+              className="w-6 h-6 text-indigo-500 animate-bounce"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+          </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

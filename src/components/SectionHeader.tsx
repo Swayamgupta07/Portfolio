@@ -1,3 +1,9 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
@@ -5,10 +11,37 @@ interface SectionHeaderProps {
 }
 
 export default function SectionHeader({ title, subtitle, isDarkMode }: SectionHeaderProps) {
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el.children,
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+        }
+      );
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="text-center mb-16">
-      <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
-        isDarkMode ? 'text-white' : 'text-gray-900'
+    <div ref={headerRef} className="text-center mb-16">
+      <h2 className={`text-4xl md:text-5xl font-extrabold mb-6 tracking-tight ${
+        isDarkMode ? 'text-white' : 'text-slate-900'
       }`}>
         {title}
       </h2>

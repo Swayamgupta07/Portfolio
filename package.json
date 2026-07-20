@@ -9,12 +9,16 @@
     "lint": "tsc -p . -noEmit --pretty false && vite build"
   },
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.42.2",
+    "gsap": "^3.15.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.7.1",
     "react-simple-typewriter": "^5.0.1",
     "sonner": "^2.0.3",
+    "split-type": "^0.3.4",
     "tailwind-merge": "^3.1.0"
   },
   "devDependencies": {
