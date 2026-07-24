@@ -18,7 +18,6 @@ export default function About({ isDarkMode }: AboutProps) {
   const rightColRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
-  // Framer Motion 3D tilt controls
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [15, -15]), { stiffness: 300, damping: 30 });
@@ -42,7 +41,6 @@ export default function About({ isDarkMode }: AboutProps) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Fade and slide left col from left
       gsap.fromTo(
         leftColRef.current,
         { x: -100, opacity: 0 },
@@ -58,7 +56,6 @@ export default function About({ isDarkMode }: AboutProps) {
         }
       );
 
-      // Fade and slide right col from right
       gsap.fromTo(
         rightColRef.current,
         { x: 100, opacity: 0 },
@@ -74,7 +71,6 @@ export default function About({ isDarkMode }: AboutProps) {
         }
       );
 
-      // Timeline items reveal & line draw
       const timelineLines = gsap.utils.toArray(".timeline-line");
       const timelineCards = gsap.utils.toArray(".timeline-card");
 
@@ -100,7 +96,6 @@ export default function About({ isDarkMode }: AboutProps) {
         );
       });
 
-      // Draw timeline connector line
       gsap.fromTo(
         ".timeline-connector",
         { scaleY: 0 },
@@ -134,7 +129,6 @@ export default function About({ isDarkMode }: AboutProps) {
         />
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Left Column - Image & Highlights */}
           <div ref={leftColRef} className="space-y-8">
             <motion.div
               style={{ rotateX, rotateY }}
@@ -184,7 +178,6 @@ export default function About({ isDarkMode }: AboutProps) {
             </div>
           </div>
 
-          {/* Right Column - Text & Journey */}
           <div ref={rightColRef} className="space-y-8">
             <div className="space-y-6">
               <h3
@@ -232,32 +225,9 @@ export default function About({ isDarkMode }: AboutProps) {
                 </p>
               </div>
             </div>
-
-            <div className="pt-4">
-              <a
-                href="/resume.pdf"
-                download
-                className={`shiny-btn inline-flex items-center px-8 py-4 font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl glow-purple ${
-                  isDarkMode
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                    : "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
-                }`}
-              >
-                <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                Download Resume
-              </a>
-            </div>
           </div>
         </div>
 
-        {/* Timeline (My Journey) */}
         <div ref={timelineRef} className="timeline-container mt-28">
           <h3
             className={`text-3xl font-extrabold text-center mb-16 tracking-tight ${
@@ -268,7 +238,6 @@ export default function About({ isDarkMode }: AboutProps) {
           </h3>
 
           <div className="relative max-w-4xl mx-auto">
-            {/* Center vertical connector line */}
             <div
               className={`absolute left-1/2 transform -translate-x-1/2 w-[3px] h-full origin-top timeline-connector ${
                 isDarkMode ? "bg-slate-800" : "bg-indigo-100"
@@ -282,7 +251,6 @@ export default function About({ isDarkMode }: AboutProps) {
                   index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                 }`}
               >
-                {/* Timeline Card Column */}
                 <div className={`w-1/2 ${index % 2 === 0 ? "pr-10 text-right" : "pl-10 text-left"}`}>
                   <div
                     className={`timeline-card p-6 rounded-2xl border transition-all duration-300 hover:scale-105 hover:shadow-xl ${
@@ -322,7 +290,6 @@ export default function About({ isDarkMode }: AboutProps) {
                   </div>
                 </div>
 
-                {/* Center dot */}
                 <div
                   className={`absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full border-4 shadow-md transition-transform duration-300 hover:scale-125 z-10 ${
                     item.current

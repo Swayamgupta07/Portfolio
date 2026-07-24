@@ -40,7 +40,6 @@ export default function Skills({ isDarkMode }: SkillsProps) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Stagger category cards
       gsap.fromTo(
         ".skill-category-card",
         { opacity: 0, y: 50, scale: 0.95 },
@@ -58,7 +57,6 @@ export default function Skills({ isDarkMode }: SkillsProps) {
         }
       );
 
-      // Animate progress bar widths on scroll
       const fillBars = gsap.utils.toArray(".skill-bar-fill");
       fillBars.forEach((bar: any) => {
         const targetWidth = bar.getAttribute("data-width") || "0%";
@@ -77,7 +75,6 @@ export default function Skills({ isDarkMode }: SkillsProps) {
         );
       });
 
-      // Stagger additional competencies badges
       gsap.fromTo(
         ".competency-badge",
         { opacity: 0, scale: 0.7 },
@@ -107,13 +104,11 @@ export default function Skills({ isDarkMode }: SkillsProps) {
           isDarkMode={isDarkMode}
         />
 
-        {/* Double Row Infinite Scrolling Marquee */}
         <div className="mb-16 space-y-4">
           <InfiniteMarquee items={marqueeSkillsRow1} speed={25} isDarkMode={isDarkMode} />
           <InfiniteMarquee items={marqueeSkillsRow2} speed={30} isDarkMode={isDarkMode} reverse />
         </div>
 
-        {/* Core Skill Categories Grid */}
         <div className="skill-categories-grid grid md:grid-cols-2 gap-8 mb-16">
           {skillCategories.map((category, categoryIndex) => (
             <div
@@ -167,7 +162,6 @@ export default function Skills({ isDarkMode }: SkillsProps) {
                         isDarkMode ? "bg-slate-700" : "bg-gray-200"
                       }`}
                     >
-                      {/* GSAP animated width bar */}
                       <div
                         className="skill-bar-fill absolute top-0 left-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 h-full rounded-full shadow-md"
                         data-width={`${skill.level}%`}
@@ -180,7 +174,6 @@ export default function Skills({ isDarkMode }: SkillsProps) {
           ))}
         </div>
 
-        {/* Additional Skills Section */}
         <div
           className={`competencies-container rounded-2xl shadow-lg p-8 border ${
             isDarkMode ? "bg-slate-800/80 border-gray-700/60" : "bg-white border-gray-200"
@@ -208,7 +201,6 @@ export default function Skills({ isDarkMode }: SkillsProps) {
           </div>
         </div>
 
-        {/* Skill Stats section using Animated Counters */}
         <div className="mt-16 text-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {skillStats.map((stat, index) => (

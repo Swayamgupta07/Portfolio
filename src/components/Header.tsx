@@ -19,29 +19,31 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
   ];
 
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-25% 0px -55% 0px", // triggers when section dominates the viewport height
-      threshold: 0.1,
-    };
+    const handleScroll = () => {
+      const sections = ["home", "about", "projects", "experience", "skills", "contact"];
+      const scrollPosition = window.scrollY + 200;
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(`#${entry.target.id}`);
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        setActiveSection("#contact");
+        return;
+      }
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          if (scrollPosition >= sectionTop) {
+            setActiveSection(`#${sections[i]}`);
+            break;
+          }
         }
-      });
+      }
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
 
-    const sections = ["home", "about", "projects", "experience", "skills", "contact"];
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
@@ -53,7 +55,6 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
         behavior: "smooth",
         block: "start",
       });
-      // Close mobile menu
       setIsMenuOpen(false);
       setActiveSection(path);
     }
@@ -81,7 +82,6 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
             </a>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) => (
               <a
@@ -102,7 +102,19 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
               </a>
             ))}
 
-            {/* Dark Mode Toggle */}
+            <a
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`px-4 py-2 text-sm font-bold rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 ${
+                isDarkMode 
+                  ? "bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-900/50" 
+                  : "bg-indigo-600 text-white hover:bg-indigo-500 shadow-lg shadow-indigo-200"
+              }`}
+            >
+              Resume
+            </a>
+
             <button
               onClick={toggleDarkMode}
               className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 cursor-pointer ${
@@ -128,9 +140,7 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
             </button>
           </nav>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-4">
-            {/* Mobile Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
               className={`p-2 rounded-xl transition-all duration-300 ${
@@ -181,7 +191,6 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="md:hidden">
           <div
@@ -207,6 +216,21 @@ export default function Header({ isDarkMode, toggleDarkMode }: HeaderProps) {
                 {item.label}
               </a>
             ))}
+            
+            <div className="px-3 py-2 mt-2">
+              <a
+                href="/Swayam_Gupta_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block w-full text-center px-3 py-2.5 text-base font-bold rounded-lg transition-colors ${
+                  isDarkMode
+                    ? "bg-blue-600 text-white hover:bg-blue-500"
+                    : "bg-indigo-600 text-white hover:bg-indigo-500"
+                }`}
+              >
+                Download Resume
+              </a>
+            </div>
           </div>
         </div>
       )}

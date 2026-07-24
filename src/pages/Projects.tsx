@@ -26,7 +26,6 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Stagger filter buttons on load/scroll
       gsap.fromTo(
         ".filter-btn",
         { opacity: 0, scale: 0.8, y: 15 },
@@ -44,7 +43,6 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
         }
       );
 
-      // Stagger project cards grid
       gsap.fromTo(
         ".project-card-wrapper",
         { opacity: 0, y: 60, scale: 0.95 },
@@ -64,7 +62,7 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [selectedTech]); // Re-run triggers on tech filter change to animate filtered cards in beautifully!
+  }, [selectedTech]); 
 
   return (
     <SectionWrapper id="projects" isDarkMode={isDarkMode}>
@@ -75,7 +73,6 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
           isDarkMode={isDarkMode}
         />
 
-        {/* Filter buttons */}
         <div className="filter-buttons-container flex flex-wrap justify-center gap-3 mb-16 select-none">
           {allTech.map((tech) => (
             <button
@@ -96,7 +93,6 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
           ))}
         </div>
 
-        {/* Projects Grid */}
         <div className="projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div key={project.id} className="project-card-wrapper h-full">
@@ -105,7 +101,6 @@ export default function Projects({ isDarkMode }: ProjectsProps) {
           ))}
         </div>
 
-        {/* Stats counters grid using Animated Counters */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
           {projectStats.map((stat, index) => (
             <AnimatedCounter

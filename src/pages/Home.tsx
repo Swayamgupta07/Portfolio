@@ -22,7 +22,6 @@ export default function Home({ isDarkMode }: HomeProps) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Background blobs animate slowly
       gsap.to(".blob-1", {
         x: "50px",
         y: "-30px",
@@ -42,7 +41,6 @@ export default function Home({ isDarkMode }: HomeProps) {
         ease: "sine.inOut",
       });
 
-      // Hero entrance animations
       const tl = gsap.timeline();
       tl.fromTo(
         imageRef.current,
@@ -106,7 +104,6 @@ export default function Home({ isDarkMode }: HomeProps) {
           : "bg-gradient-to-br from-blue-50 via-white to-indigo-50 text-slate-900"
       }`}
     >
-      {/* Dynamic Animated Blur Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div
           className={`blob-1 absolute top-10 left-10 w-96 h-96 rounded-full filter blur-[100px] opacity-[0.12] ${
@@ -122,7 +119,6 @@ export default function Home({ isDarkMode }: HomeProps) {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-20 flex flex-col justify-center min-h-screen">
         <div className="mb-8">
-          {/* Profile Image + Connected Green Dot */}
           <div className="relative w-fit mx-auto mt-6 mb-6 pb-2 group" ref={imageRef}>
             <img
               src="/Photo.jpg"
@@ -203,7 +199,6 @@ export default function Home({ isDarkMode }: HomeProps) {
           </p>
         </div>
 
-        {/* Shiny Buttons */}
         <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center mb-14">
           <a
             href="#projects"
@@ -259,7 +254,6 @@ export default function Home({ isDarkMode }: HomeProps) {
           </a>
         </div>
 
-        {/* Social Icons */}
         <div ref={socialsRef} className="flex justify-center space-x-8 mb-4">
           <a
             href="https://github.com/Swayamgupta07"
@@ -325,7 +319,6 @@ export default function Home({ isDarkMode }: HomeProps) {
           </button>
         </div>
 
-        {/* Scroll indicator bouncing down */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 scroll-indicator cursor-pointer opacity-75 hidden md:block">
           <a href="#about" aria-label="Scroll Down">
             <svg

@@ -24,7 +24,6 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load dark mode preference from localStorage
   useEffect(() => {
     const savedDarkMode = localStorage.getItem("darkMode");
     if (savedDarkMode) {
@@ -55,7 +54,6 @@ export default function App() {
       ScrollTrigger.update();
     });
 
-    // Sync Lenis with GSAP animation ticker
     const gsapTicker = (time: number) => {
       lenis.raf(time * 1000);
     };
